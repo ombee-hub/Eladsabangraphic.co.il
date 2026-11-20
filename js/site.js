@@ -198,3 +198,14 @@
     window.open("https://wa.me/972503291993?text=" + encodeURIComponent(lines.join("\n")), "_blank");
   });
 })();
+
+/* --- Desktop mega-menu hover-intent (keeps the centered panel open across the gap) --- */
+(function () {
+  "use strict";
+  var dd = document.querySelector(".nav-dd");
+  if (!dd) return;
+  var timer;
+  function desktop() { return window.matchMedia("(min-width:861px)").matches; }
+  dd.addEventListener("mouseenter", function () { if (!desktop()) return; clearTimeout(timer); dd.classList.add("dd-open"); });
+  dd.addEventListener("mouseleave", function () { if (!desktop()) return; clearTimeout(timer); timer = setTimeout(function () { dd.classList.remove("dd-open"); }, 200); });
+})();
